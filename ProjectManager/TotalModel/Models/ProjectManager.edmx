@@ -739,7 +739,7 @@
           <Property Name="PurchaseOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="Reference" Type="nvarchar" MaxLength="10" />
-          <Property Name="PoNumber" Type="nvarchar" MaxLength="60" />
+          <Property Name="PoNumber" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="RequisitionOrderID" Type="int" />
           <Property Name="SupplierID" Type="int" Nullable="false" />
           <Property Name="ProjectID" Type="int" Nullable="false" />
@@ -3541,7 +3541,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
           <Property Name="PurchaseOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="PoNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PoNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RequisitionOrderID" Type="Int32" />
           <Property Name="SupplierID" Type="Int32" Nullable="false" />
           <Property Name="ProjectID" Type="Int32" Nullable="false" />
