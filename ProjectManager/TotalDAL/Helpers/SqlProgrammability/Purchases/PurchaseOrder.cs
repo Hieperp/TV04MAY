@@ -32,7 +32,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Purchases
             this.PurchaseOrderToggleVoid();
             this.PurchaseOrderToggleVoidDetail();
 
-            this.PurchaseOrderInitReference();
+            //this.PurchaseOrderInitReference();
             this.PurchaseOrderSheet();
         }
 
@@ -213,7 +213,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Purchases
 
             queryString = queryString + "       DECLARE         @LocalPurchaseOrderID int    SET @LocalPurchaseOrderID = @PurchaseOrderID" + "\r\n";
 
-            queryString = queryString + "       SELECT          PurchaseOrders.PurchaseOrderID, PurchaseOrders.EntryDate, PurchaseOrders.Reference, PurchaseOrders.PoNumber, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.BillingAddress, Customers.Telephone, Customers.Facsimile, PurchaseOrders.AttentionName, PurchaseOrders.Receiver, PurchaseOrders.ShippingAddress, PurchaseOrders.DeliveryDate, PaymentTerms.Name AS PaymentTermName, Projects.Code AS ProjectCode, Projects.Name AS ProjectName, " + "\r\n";
+            queryString = queryString + "       SELECT          PurchaseOrders.PurchaseOrderID, PurchaseOrders.EntryDate, PurchaseOrders.Reference, PurchaseOrders.PoNumber, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.BillingAddress, Customers.Telephone, Customers.Facsimile, PurchaseOrders.AttentionName, PurchaseOrders.Receiver, PurchaseOrders.ShippingAddress, PurchaseOrders.DeliveryDate, PurchaseOrders.Description, PaymentTerms.Name AS PaymentTermName, Projects.Code AS ProjectCode, Projects.Name AS ProjectName, " + "\r\n";
             queryString = queryString + "                       PurchaseOrderDetails.RowCategory, PurchaseOrderDetails.RowDescription, PurchaseOrderDetails.RowSpecification, PurchaseOrderDetails.RowUnit, PurchaseOrderDetails.RequestNo, PurchaseOrderDetails.JobType, PurchaseOrderDetails.JobNo, PurchaseOrderDetails.CodeSection, PurchaseOrderDetails.CodeItem, PurchaseOrderDetails.Quantity, PurchaseOrderDetails.UnitPrice, PurchaseOrderDetails.Amount, PurchaseOrderDetails.VATPercent, PurchaseOrderDetails.VATAmount, PurchaseOrderDetails.GrossAmount, " + "\r\n";
             queryString = queryString + "                       Salespersons.Name AS SalespersonName, ControlPersons.Name AS ControlPersonName, AuthorizedPersons.Name AS AuthorizedPersonName " + "\r\n";
 
