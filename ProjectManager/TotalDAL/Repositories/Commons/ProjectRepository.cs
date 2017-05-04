@@ -16,7 +16,7 @@ namespace TotalDAL.Repositories.Commons
         public IList<Project> SearchProjects(string searchText)
         {
             this.TotalSalesPortalEntities.Configuration.ProxyCreationEnabled = false;
-            List<Project> projects = this.TotalSalesPortalEntities.Projects.Where(w => (w.Name.Contains(searchText))).OrderByDescending(or => or.Name).Take(20).ToList();
+            List<Project> projects = this.TotalSalesPortalEntities.Projects.Where(w => (w.Code.Contains(searchText) || w.Name.Contains(searchText))).OrderByDescending(or => or.Name).Take(20).ToList();
             this.TotalSalesPortalEntities.Configuration.ProxyCreationEnabled = true;
 
             return projects;
