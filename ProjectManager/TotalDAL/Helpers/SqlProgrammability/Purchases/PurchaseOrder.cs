@@ -142,11 +142,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Purchases
 
         private void PurchaseOrderToggleApproved()
         {
-            string queryString = " @EntityID int, @Approved bit " + "\r\n";
+            string queryString = " @EntityID int, @ApproverID int, @Approved bit " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       UPDATE      PurchaseOrders  SET Approved = @Approved, ApprovedDate = GetDate() WHERE PurchaseOrderID = @EntityID AND Approved = ~@Approved" + "\r\n";
+            queryString = queryString + "       UPDATE      PurchaseOrders  SET ApproverID = @ApproverID, Approved = @Approved, ApprovedDate = GetDate() WHERE PurchaseOrderID = @EntityID AND Approved = ~@Approved" + "\r\n";
 
             queryString = queryString + "       IF @@ROWCOUNT = 1 " + "\r\n";
             queryString = queryString + "           UPDATE          PurchaseOrderDetails  SET Approved = @Approved WHERE PurchaseOrderID = @EntityID ; " + "\r\n";

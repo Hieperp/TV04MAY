@@ -2353,6 +2353,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
         </Function>
         <Function Name="PurchaseOrderToggleApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="ApproverID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
         </Function>
         <Function Name="PurchaseOrderToggleVoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -5142,6 +5143,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
           </FunctionImport>
           <FunctionImport Name="PurchaseOrderToggleApproved">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="ApproverID" Mode="In" Type="Int32" />
             <Parameter Name="Approved" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="PurchaseOrderToggleVoid">

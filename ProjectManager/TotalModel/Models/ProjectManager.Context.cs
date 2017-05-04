@@ -1003,17 +1003,21 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrderSaveRelative", entityIDParameter, saveRelativeOptionParameter);
         }
     
-        public virtual int PurchaseOrderToggleApproved(Nullable<int> entityID, Nullable<bool> approved)
+        public virtual int PurchaseOrderToggleApproved(Nullable<int> entityID, Nullable<int> approverID, Nullable<bool> approved)
         {
             var entityIDParameter = entityID.HasValue ?
                 new ObjectParameter("EntityID", entityID) :
                 new ObjectParameter("EntityID", typeof(int));
     
+            var approverIDParameter = approverID.HasValue ?
+                new ObjectParameter("ApproverID", approverID) :
+                new ObjectParameter("ApproverID", typeof(int));
+    
             var approvedParameter = approved.HasValue ?
                 new ObjectParameter("Approved", approved) :
                 new ObjectParameter("Approved", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrderToggleApproved", entityIDParameter, approvedParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrderToggleApproved", entityIDParameter, approverIDParameter, approvedParameter);
         }
     
         public virtual int PurchaseOrderToggleVoid(Nullable<int> entityID, Nullable<bool> inActive, Nullable<int> voidTypeID)

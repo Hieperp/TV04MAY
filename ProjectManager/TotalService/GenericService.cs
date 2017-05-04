@@ -421,7 +421,7 @@ namespace TotalService
         {
             if (this.functionNameToggleApproved != null && this.functionNameToggleApproved != "")
             {
-                ObjectParameter[] parameters = new ObjectParameter[] { new ObjectParameter("EntityID", dto.GetID()), new ObjectParameter("Approved", !dto.Approved) };
+                ObjectParameter[] parameters = new ObjectParameter[] { new ObjectParameter("EntityID", dto.GetID()), new ObjectParameter("ApproverID", dto.ApproverID), new ObjectParameter("Approved", !dto.Approved) };
                 if (this.genericRepository.ExecuteFunction(this.functionNameToggleApproved, parameters) < 1) throw new System.ArgumentException("Lỗi", "Chứng từ không tồn tại hoặc đã " + (dto.Approved ? "hủy" : "") + "duyệt");
             }
             else
