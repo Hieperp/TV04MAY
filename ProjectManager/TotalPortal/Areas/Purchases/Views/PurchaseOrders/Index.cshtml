@@ -26,7 +26,13 @@
             .ToolBar(toolbar =>
             {
                 //toolbar.Custom().Action("Create", "PurchaseOrders");
-                toolbar.Template(@<text> <button type="button" class="k-button" onclick="createWizard()"> <img src="~/Content/Images/Mains/Size24/folder-documents-icon-24.png" /> Create new purchase order </button> </text>);
+                toolbar.Template(@<text> 
+                    <button type="button" class="k-button" onclick="createWizard()"> <img src="~/Content/Images/Mains/Size24/folder-documents-icon-24.png" /> Create new purchase order </button> 
+                    <div class="toolbar" style="float: right;">
+                        <label>Nhập số phiếu ĐNGH/ hoặc mã, tên hoặc MST khách hàng, đơn vị nhận, hoặc địa chỉ giao hàng</label>
+                        <input id="indexFilterText" class="k-textbox" style="text-align: center;" onkeyup="indexFilterText_KeyUp()" />
+                    </div>
+                </text>);
             })
             .Pageable()
             .Groupable()
@@ -82,6 +88,26 @@
         var isWarrantyClaim = elem.Approved;
         if (isWarrantyClaim == null || isWarrantyClaim == false) {
             $('tr[data-uid="' + elem.uid + '"]').addClass("isBonus");
+        }
+    }
+
+
+    function indexFilterText_KeyUp() {
+        var indexFilterText = $("#indexFilterText").val(), gridDetails = $("#kendoGridIndex").data("kendoGrid");
+
+        if (indexFilterText && indexFilterText.length >= "@SettingsManager.AutoCompleteMinLenght") {
+            gridDetails.dataSource.filter({
+                logic: "or",
+                filters: [
+                    { field: "Reference", operator: "contains", value: indexFilterText },
+                    { field: "CustomerName", operator: "contains", value: indexFilterText }
+                ]
+            });
+
+
+        } else {
+            if (gridDetails.dataSource.filter() != undefined)
+                gridDetails.dataSource.filter({});
         }
     }
 
