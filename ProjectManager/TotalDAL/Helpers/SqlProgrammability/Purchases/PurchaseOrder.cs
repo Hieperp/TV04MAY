@@ -199,6 +199,33 @@ namespace TotalDAL.Helpers.SqlProgrammability.Purchases
 
         private void PurchaseOrderInitReference()
         {
+            //            USE [ProjectManager]
+            //GO
+            ///****** Object:  Trigger [dbo].[PurchaseOrderInitReference]    Script Date: 04/05/2017 13:28:24 ******/
+            //SET ANSI_NULLS ON
+            //GO
+            //SET QUOTED_IDENTIFIER ON
+            //GO
+            //ALTER TRIGGER [dbo].[PurchaseOrderInitReference]
+            // ON [dbo].[PurchaseOrders] AFTER INSERT 
+            // AS 
+            //          DECLARE     @LocationID int         SET @LocationID = (SELECT LocationID FROM Inserted) 
+            //   DECLARE     @EntityID int           SET @EntityID = (SELECT PurchaseOrderID FROM Inserted) 
+            //   DECLARE     @EntryDate DateTime     SET @EntryDate = (SELECT EntryDate FROM Inserted) 
+
+            //   DECLARE     @ProjectID int           SET @ProjectID = (SELECT PurchaseOrderID FROM Inserted) 
+
+            //          DECLARE     @PrefixLetter varchar(10)   SET @PrefixLetter = 'D'
+
+            //   DECLARE     @columnNameMax int 
+            //   SET         @columnNameMax = (SELECT MAX(CAST( SUBSTRING(Reference, LEN(@PrefixLetter) + 1, CASE PATINDEX('%.%', Reference) WHEN 0 THEN LEN(Reference) - LEN(@PrefixLetter) ELSE PATINDEX('%.%', Reference) - 1 - LEN(@PrefixLetter) END) AS Int)) AS columnNameMax FROM PurchaseOrders  WHERE LocationID = @LocationID AND ProjectID = @ProjectID 
+            //)    IF          @columnNameMax IS NULL SET @columnNameMax = 1 ELSE SET @columnNameMax = @columnNameMax + 1    UPDATE      PurchaseOrders
+            //   SET         Reference = @PrefixLetter + RIGHT(CAST(100000000 + @columnNameMax as varchar), 6 - LEN(@PrefixLetter)) 
+            //   WHERE       PurchaseOrderID = @EntityID 
+            // UPDATE PurchaseOrders SET PoNumber = RIGHT(Reference, 5) WHERE PurchaseOrderID = @EntityID
+
+
+
             SimpleInitReference simpleInitReference = new SimpleInitReference("PurchaseOrders", "PurchaseOrderID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.PurchaseOrder));
             this.projectManagerEntities.CreateTrigger("PurchaseOrderInitReference", simpleInitReference.CreateQuery() + " UPDATE PurchaseOrders SET PoNumber = RIGHT(Reference, 5) WHERE PurchaseOrderID = @EntityID ");
         }
