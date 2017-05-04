@@ -215,16 +215,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Purchases
 
             queryString = queryString + "       SELECT          PurchaseOrders.PurchaseOrderID, PurchaseOrders.EntryDate, PurchaseOrders.Reference, PurchaseOrders.PoNumber, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.BillingAddress, Customers.Telephone, Customers.Facsimile, PurchaseOrders.AttentionName, PurchaseOrders.Receiver, PurchaseOrders.ShippingAddress, PurchaseOrders.DeliveryDate, PurchaseOrders.Description, PaymentTerms.Name AS PaymentTermName, Projects.Code AS ProjectCode, Projects.Name AS ProjectName, " + "\r\n";
             queryString = queryString + "                       PurchaseOrderDetails.RowCategory, PurchaseOrderDetails.RowDescription, PurchaseOrderDetails.RowSpecification, PurchaseOrderDetails.RowUnit, PurchaseOrderDetails.RequestNo, PurchaseOrderDetails.JobType, PurchaseOrderDetails.JobNo, PurchaseOrderDetails.CodeSection, PurchaseOrderDetails.CodeItem, PurchaseOrderDetails.Quantity, PurchaseOrderDetails.UnitPrice, PurchaseOrderDetails.Amount, PurchaseOrderDetails.VATPercent, PurchaseOrderDetails.VATAmount, PurchaseOrderDetails.GrossAmount, " + "\r\n";
-            queryString = queryString + "                       Salespersons.Name AS SalespersonName, ControlPersons.Name AS ControlPersonName, AuthorizedPersons.Name AS AuthorizedPersonName " + "\r\n";
+            queryString = queryString + "                       Salespersons.FirstName + ' ' + Salespersons.LastName AS SalespersonName, VerifierPersons.FirstName + ' ' + VerifierPersons.LastName AS VerifierPerson, ControlPersons.FirstName + ' ' + ControlPersons.LastName AS ControlPersonName, AuthorizedPersons.FirstName + ' ' + AuthorizedPersons.LastName AS AuthorizedPersonName " + "\r\n";
 
             queryString = queryString + "       FROM            PurchaseOrders " + "\r\n";
             queryString = queryString + "                       INNER JOIN Projects ON PurchaseOrders.PurchaseOrderID = @LocalPurchaseOrderID AND PurchaseOrders.ProjectID = Projects.ProjectID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON PurchaseOrders.SupplierID = Customers.CustomerID " + "\r\n";
             queryString = queryString + "                       INNER JOIN PaymentTerms ON PurchaseOrders.PaymentTermID = PaymentTerms.PaymentTermID " + "\r\n";
             queryString = queryString + "                       INNER JOIN PurchaseOrderDetails ON PurchaseOrders.PurchaseOrderID = PurchaseOrderDetails.PurchaseOrderID " + "\r\n";
-            queryString = queryString + "                       INNER JOIN Employees Salespersons ON PurchaseOrders.SalespersonID = Salespersons.EmployeeID " + "\r\n";
-            queryString = queryString + "                       INNER JOIN Employees ControlPersons ON PurchaseOrders.ControlPersonID = ControlPersons.EmployeeID " + "\r\n";
-            queryString = queryString + "                       INNER JOIN Employees AuthorizedPersons ON PurchaseOrders.AuthorizedPersonID = AuthorizedPersons.EmployeeID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN AspNetUsers Salespersons ON PurchaseOrders.PreparedPersonID = Salespersons.UserID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN AspNetUsers VerifierPersons ON PurchaseOrders.VerifierID = VerifierPersons.UserID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN AspNetUsers ControlPersons ON PurchaseOrders.ApproverID = ControlPersons.UserID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN AspNetUsers AuthorizedPersons ON PurchaseOrders.ManagerID = AuthorizedPersons.UserID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
