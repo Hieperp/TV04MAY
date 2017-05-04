@@ -32,7 +32,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Purchases
             this.PurchaseOrderToggleVoid();
             this.PurchaseOrderToggleVoidDetail();
 
-            //this.PurchaseOrderInitReference();
+            //this.PurchaseOrderInitReference(); //CHU Y: FOR EACH PROJECT
             this.PurchaseOrderSheet();
         }
 
