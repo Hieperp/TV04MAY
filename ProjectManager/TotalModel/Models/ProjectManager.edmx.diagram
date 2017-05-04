@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="163745376b4c433aa5ed00eda68db375" Name="Diagram1" ZoomLevel="50">
+        <EntityTypeShape EntityType="ProjectManagerModel.AccessControl" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.AccountInvoiceDetail" Width="1.5" PointX="5.25" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.AccountInvoice" Width="1.5" PointX="3" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.AspNetUser" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Commodity" Width="1.5" PointX="3" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.CommodityCategory" Width="1.5" PointX="0.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.CommodityType" Width="1.5" PointX="0.75" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.CustomerCategory" Width="1.5" PointX="3" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Customer" Width="1.5" PointX="5.25" PointY="44.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.CustomerType" Width="1.5" PointX="3" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.DeliveryAdviceDetail" Width="1.5" PointX="9.75" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.DeliveryAdvice" Width="1.5" PointX="7.5" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.GoodsDelivery" Width="1.5" PointX="15.5" PointY="43.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.GoodsDeliveryDetail" Width="1.5" PointX="23.25" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.GoodsIssueDetail" Width="1.5" PointX="15" PointY="52.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.GoodsIssue" Width="1.5" PointX="12.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.HandlingUnitDetail" Width="1.5" PointX="23.25" PointY="50.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.HandlingUnit" Width="1.5" PointX="18" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Location" Width="1.5" PointX="0.75" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.ModuleDetail" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Module" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.OrganizationalUnit" Width="1.5" PointX="3" PointY="63.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.OrganizationalUnitUser" Width="1.5" PointX="5.25" PointY="63.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.PackingMaterial" Width="1.5" PointX="15.75" PointY="62.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.PriceCategory" Width="1.5" PointX="3" PointY="59.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Promotion" Width="1.5" PointX="5.25" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.PurchaseOrderDetail" Width="1.5" PointX="12.75" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.PurchaseOrder" Width="1.5" PointX="10.5" PointY="52.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.ReceiptDetail" Width="1.5" PointX="21" PointY="45.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Receipt" Width="1.5" PointX="21" PointY="50.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.SalesOrderDetail" Width="1.5" PointX="17.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.SalesOrder" Width="1.5" PointX="15.5" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Territory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Vehicle" Width="1.5" PointX="13.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.VoidType" Width="1.5" PointX="5.25" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Warehouse" Width="1.5" PointX="3" PointY="66.5" IsExpanded="true" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoiceDetails_AccountInvoices" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoiceDetails_Commodities" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoiceDetails_GoodsIssueDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoices_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoices_Customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoices_Customers2" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoices_GoodsIssues" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoices_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Commodities_CommodityCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Commodities_CommodityTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdviceDetails_Commodities" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssueDetails_Commodities" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrderDetails_Commodities" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrderDetails_Commodities" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_CommodityCategories_CommodityCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_CommodityTypes_CommodityTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_CustomerCategories_CustomerCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Customers_CustomerCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Customers_CustomerTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Customers_PriceCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_Customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsDeliveries_Customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssues_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssues_Customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnits_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnits_Customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Receipts_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_CustomerTypes_CustomerTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdviceDetails_DeliveryAdvices" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdviceDetails_SalesOrderDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdviceDetails_VoidTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssueDetails_DeliveryAdviceDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_PriceCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_Promotions" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_SalesOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_VoidTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssues_DeliveryAdvices" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsDeliveries_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsDeliveries_Vehicles" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsDeliveryDetails_GoodsDeliveries" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsDeliveryDetails_HandlingUnits" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssueDetails_GoodsIssues" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssueDetails_VoidTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssueDetails_Warehouses" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnitDetails_GoodsIssueDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnits_GoodsIssues" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_ReceiptDetails_GoodsIssues" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Receipts_GoodsIssues" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnitDetails_HandlingUnits" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnits_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnits_PackingMaterials" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_OrganizationalUnits_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrders_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Warehouses_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_OrganizationalUnitIUsers_OrganizationalUnits" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrders_Promotions" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrderDetails_PurchaseOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_ReceiptDetails_Receipts" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrderDetails_SalesOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Territories_Territories" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProjectManagerModel.EntireCommodityCategory" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ProjectManagerModel.EntireCustomerCategory" Width="1.5" PointX="3" PointY="70.75" />
+        <EntityTypeShape EntityType="ProjectManagerModel.EntireTerritory" Width="1.5" PointX="5.375" PointY="6" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Customers_EntireCustomerCategories" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Customers_EntireTerritories" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Employee" Width="1.5" PointX="3" PointY="46" />
+        <EntityTypeShape EntityType="ProjectManagerModel.PaymentTerm" Width="1.5" PointX="0.75" PointY="46.25" />
+        <EntityTypeShape EntityType="ProjectManagerModel.Project" Width="1.5" PointX="8.25" PointY="56" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AccountInvoices_PaymentTerms" />
+        <AssociationConnector Association="ProjectManagerModel.FK_CustomerCategories_PaymentTerms" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Customers_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_DeliveryAdvices_PaymentTerms" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Employees_Locations" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsDeliveries_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsDeliveries_Employees1" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssues_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_HandlingUnits_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_Employees1" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_Employees2" />
+        <AssociationConnector Association="ProjectManagerModel.FK_Receipts_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrders_Employees" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrders_Receptionists" />
+        <AssociationConnector Association="ProjectManagerModel.FK_GoodsIssues_PaymentTerms" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_PaymentTerms" />
+        <AssociationConnector Association="ProjectManagerModel.FK_SalesOrders_PaymentTerms" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_Projects" />
+        <EntityTypeShape EntityType="ProjectManagerModel.AspNetGroup" Width="1.5" PointX="2.5" PointY="10" />
+        <AssociationConnector Association="ProjectManagerModel.FK_AspNetUsers_AspNetGroups" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

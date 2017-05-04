@@ -1,0 +1,70 @@
+﻿@using TotalPortal.Configuration
+
+@model TotalPortal.Areas.Commons.ViewModels.ProjectViewModel
+
+<div id="popupWindow"></div>
+
+<div class="left-panel" style="height:30px;"></div>
+
+<div class="right-panel">
+    @(Html.Kendo().Grid<TotalModel.Models.ProjectIndex>()
+        .Name("kendoGridIndex")
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.ProjectID).DisplayNameTitle().Hidden();
+            columns.Bound(p => p.Code).Title("Code").Width(10);
+
+            columns.Bound(p => p.Name).Title("Name").Width(160).ClientTemplate("<a href='" + Url.RouteUrl("Default", new { controller = "Commons/Projects", action = "Edit" }) + "/#= ProjectID #'>#=Name#</a>");
+            columns.Bound(p => p.ProjectAddress).Title("Address").Width(180);
+            columns.Bound(p => p.EntryDate).Title("Project Date").Format("{0:dd/MM/yyyy}").HtmlAttributes(new { @class = "grid-column-center" }).Width(10);
+            columns.Bound(p => p.DueDate).Title("Deadline").Format("{0:dd/MM/yyyy}").HtmlAttributes(new { @class = "grid-column-center" }).Filterable(false).Width(10);
+
+            columns.Template(model => null).Width(90)
+                .ClientTemplate("<a class='k-button' style='padding-left:5px; min-width:28px; width:28px' href='" + Url.RouteUrl("Default", new { controller = "Commons/Projects", action = "Edit" }) + "/#= ProjectID #'><span class='k-icon k-edit'></span></a> <a class='k-button' style='padding-left:0px; padding-right:0px; min-width:28px; width:28px' href='" + Url.RouteUrl("Default", new { controller = "Commons/Projects", action = "Delete" }) + "/#= ProjectID #'><span class='k-icon k-delete'></span></a>");
+        })
+        .ToolBar(toolbar =>
+        {
+            toolbar.Custom().Action("Create", "Projects");
+            //toolbar.Create();
+            //toolbar.Template(@<text> <button type="button" class="k-button" onclick="createWizard()"> <img src="~/Content/Images/Mains/Size24/folder-documents-icon-24.png" /> Lập đề nghị giao hàng </button> </text>);
+        })
+                .Pageable()
+                .Groupable()
+                .Filterable()
+                .Selectable()
+                .Sortable()
+                .Events(e =>
+                {
+                    e.DataBound("hightLightSelectedRow");
+                })
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Read(read => read.Action("GetProjectIndexes", "ProjectAPIs", new { area = "Commons" }))
+                    .Sort(sort =>
+                        {
+                            sort.Add(p => p.Name).Descending();
+                        })
+                    .PageSize(20)
+                    .Model(model =>
+                    {
+                        model.Id(x => x.ProjectID);
+                        model.Field(m => m.ProjectID).DefaultValue(0);
+                    })
+                    .ServerOperation(true)
+                )
+                .HtmlAttributes(new { @class = "grid-class" }))
+</div>
+
+
+
+<script type="text/javascript">
+    function hightLightSelectedRow(e) {
+        require(["kindexGrid"], function (kindexGrid) {
+            var kindexGridInstance = new kindexGrid("kendoGridIndex");
+            kindexGridInstance.setSelectedRow("ProjectID", '@ViewBag.SelectedEntityID');
+        });
+    }
+</script>
+
+
+

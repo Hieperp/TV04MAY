@@ -1,0 +1,99 @@
+﻿
+@using TotalBase.Enums;
+@using TotalPortal.Configuration
+
+@model TotalPortal.Areas.Commons.ViewModels.CustomerViewModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "MainForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("~/Views/Helpers/Bases/_BaseSectionTop.cshtml")
+
+    @Html.HiddenFor(model => model.CustomerID)
+
+    <div class="left-panel" style="height:30px;"></div>
+    
+    <div class="right-first-panel">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Code)
+            <div class="div-input">
+                @Html.Kendo().MaskedTextBoxFor(model => model.Code).HtmlAttributes(new { @class = "left-panel-input" })
+            </div>
+            <div class="div-validation-message">
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            <div class="div-input">
+                @Html.Kendo().MaskedTextBoxFor(model => model.Name).HtmlAttributes(new { @class = "left-panel-input" })
+            </div>
+            <div class="div-validation-message">
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VATCode)
+            <div class="div-input">
+                @Html.Kendo().MaskedTextBoxFor(model => model.VATCode).HtmlAttributes(new { @class = "left-panel-input" })
+            </div>
+            <div class="div-validation-message">
+                @Html.ValidationMessageFor(model => model.VATCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BillingAddress)
+            <div class="div-input">
+                @Html.Kendo().MaskedTextBoxFor(model => model.BillingAddress).HtmlAttributes(new { @class = "left-panel-input" })
+            </div>
+            <div class="div-validation-message">
+                @Html.ValidationMessageFor(model => model.BillingAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telephone)
+            <div class="div-input">
+                @Html.Kendo().MaskedTextBoxFor(model => model.Telephone).HtmlAttributes(new { @class = "left-panel-input" })
+            </div>
+            <div class="div-validation-message">
+                @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Facsimile)
+            <div class="div-input">
+                @Html.Kendo().MaskedTextBoxFor(model => model.Facsimile).HtmlAttributes(new { @class = "left-panel-input" })
+            </div>
+            <div class="div-validation-message">
+                @Html.ValidationMessageFor(model => model.Facsimile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="left-panel-input">
+            @if (Model.Editable)
+            {
+                <button type="submit" class="k-button custom-button SubmitTypeOption-Closed" formaction="@Url.Action("Edit", "Customers")"> <img src="~/Content/Images/New/save-icon.png" /> Save </button>
+            }
+        </div>
+
+        @Html.Partial("~/Views/Helpers/Bases/_BaseSubmit.cshtml")
+
+    </div>
+    <div class="left-panel" style="height:30px;"></div>
+    <div class="left-panel" style="height:30px;"></div>
+    <div class="right-panel">
+
+        
+    </div>
+}

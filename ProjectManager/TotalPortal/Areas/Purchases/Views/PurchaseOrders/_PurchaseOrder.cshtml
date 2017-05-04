@@ -1,0 +1,390 @@
+﻿@using TotalBase.Enums;
+@using TotalPortal.Configuration
+
+@model TotalPortal.Areas.Purchases.ViewModels.PurchaseOrderViewModel
+
+<div id="popupWindow"></div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "MainForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("~/Views/Helpers/Bases/_BaseSectionTop.cshtml")
+
+    @Html.HiddenFor(model => model.PurchaseOrderID)
+
+    @Html.HiddenFor(model => model.TotalQuantity)
+    @Html.HiddenFor(model => model.TotalAmount)
+    @Html.HiddenFor(model => model.TotalVATAmount)
+    @Html.HiddenFor(model => model.TotalGrossAmount)
+
+    <div class="whole-width-panel">
+
+
+        <div class="div-k-panel">
+            @(Html.Kendo().PanelBar()
+                .Name("HeaderPanelBar")
+                .Items(items =>
+                {
+                    items.Add()
+                        .Text("Purchase order header")
+                        .Selected(true)
+                        .Expanded(true)
+                        .Content(@<text>
+
+                            <div class="left-panel">
+
+                                @Html.Partial("~/Views/Helpers/Bases/_BaseSectionLeftA.cshtml")
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PoNumber)
+                                    <div class="div-input">
+                                        @Html.Kendo().MaskedTextBoxFor(model => model.PoNumber).HtmlAttributes(new { @class = "left-panel-input" })
+                                    </div>
+                                    <div class="div-validation-message">
+                                        @Html.ValidationMessageFor(model => model.PoNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DeliveryDate)
+                                    <div class="div-input">
+                                        @Html.Kendo().DatePickerFor(model => model.DeliveryDate).HtmlAttributes(new { @class = "left-panel-input" })
+                                    </div>
+                                    <div class="div-validation-message">
+                                        @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DueDate)
+                                    <div class="div-input">
+                                        @Html.Kendo().DatePickerFor(model => model.DueDate).HtmlAttributes(new { @class = "left-panel-input", @readonly = "readonly" })
+                                    </div>
+                                    <div class="div-validation-message">
+                                        @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                            <div class="right-panel">
+
+                                <div class="right-top-panel right-top-panel-H3">
+
+                                    @Html.EditorFor(d => d.Supplier, new { CustomerDescriptionHidden = "false", CustomerDisplayName = @Model.GetDisplayName(m => m.Supplier) })
+
+                                    <div class="right-first-panel">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.AttentionName, new { @class = "right-panel-label" })
+                                            <div class="div-input">
+                                                @Html.Kendo().MaskedTextBoxFor(model => model.AttentionName).HtmlAttributes(new { @class = "right-panel-input" })
+                                            </div>
+                                            <div class="div-validation-message">
+                                                @Html.ValidationMessageFor(model => model.AttentionName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/PaymentTerm.cshtml")
+
+                                        
+                                    </div>
+
+                                    <div class="right-second-panel">
+                                        @Html.EditorFor(d => d.Project, new { Projectreadonly = "true" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Receiver, new { @class = "right-panel-label" })
+                                            <div class="div-input">
+                                                @Html.Kendo().MaskedTextBoxFor(model => model.Receiver).HtmlAttributes(new { @class = "right-panel-input" })
+                                            </div>
+                                            <div class="div-validation-message">
+                                                @Html.ValidationMessageFor(model => model.Receiver, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @Html.EditorFor(d => d.ShippingAddress)
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Description, new { @class = "right-panel-label right-panel-label-whole-width" })
+                                        <div class="div-input">
+                                            @Html.Kendo().MaskedTextBoxFor(model => model.Description).HtmlAttributes(new { @class = "right-panel-input right-panel-input-whole-width" })
+                                        </div>
+                                        <div class="div-validation-message">
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <div class="right-first-panel">
+                                        
+                                        
+
+                                        
+
+                                    </div>
+
+                                    <div class="right-second-panel">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </text>).HtmlAttributes(new { @class = "panel-class" });
+                })
+            )
+        </div>
+
+
+    </div>
+
+    <div class="whole-width-panel">
+
+        <div class="div-k-grid-detail">
+            @(Html.Kendo().Grid(Model.PurchaseOrderViewDetails)
+                .Name("kendoGridDetails")
+                .Columns(columns =>
+                {
+
+                    columns.Bound(p => p.PurchaseOrderDetailID).DisplayNameTitle().Filterable(false).Hidden()
+                        .ClientTemplate("#= PurchaseOrderDetailID #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].PurchaseOrderDetailID' value='#= PurchaseOrderDetailID #' />");
+                    columns.Bound(p => p.PurchaseOrderID).DisplayNameTitle().Filterable(false).Hidden()
+                        .ClientTemplate("#= PurchaseOrderID #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].PurchaseOrderID' value='#= PurchaseOrderID #' />");
+
+
+                    columns.Bound(p => p.CommodityID).DisplayNameTitle().Filterable(false).Hidden()
+                        .ClientTemplate("#= CommodityID #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityID' value='#= CommodityID #' />");
+                    columns.Bound(p => p.CommodityName).DisplayNameTitle().Filterable(false).Width(90).HtmlAttributes(new { style = "" }).Hidden()
+                        .ClientTemplate("#= CommodityName #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityName' value='#= CommodityName #' />");
+                    columns.Bound(p => p.CommodityCode).DisplayNameTitle().Filterable(false).Hidden()                        
+                        .ClientTemplate("<div> #= CommodityCode #</div>" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityCode' value='#= CommodityCode #' />");
+
+
+                    columns.Bound(p => p.RowCategory).DisplayNameTitle().Filterable(false).Width(130)
+                        .ClientTemplate("#= (RowCategory == null)? '' : RowCategory #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].RowCategory' value='#= (RowCategory == null) ? '' : RowCategory #' />");
+                    columns.Bound(p => p.RowDescription).DisplayNameTitle().Filterable(false).Width(160)
+                        .ClientTemplate("#= (RowDescription == null)? '' : RowDescription #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].RowDescription' value='#= (RowDescription == null) ? '' : RowDescription #' />");
+                    columns.Bound(p => p.RowSpecification).DisplayNameTitle().Filterable(false).Width(160)
+                        .ClientFooterTemplate("Total: #= kendo.format('{0:n0}', count) # row(s)")
+                        .ClientTemplate("#= (RowSpecification == null)? '' : RowSpecification #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].RowSpecification' value='#= (RowSpecification == null) ? '' : RowSpecification #' />");
+
+
+                    columns.Bound(p => p.RequestNo).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-column-center" }).Width(30)
+                        .ClientTemplate("#= (RequestNo == null)? '' : RequestNo #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].RequestNo' value='#= (RequestNo == null) ? '' : RequestNo #' />");
+                    columns.Bound(p => p.JobType).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-column-center" }).Width(30)
+                        .ClientTemplate("#= (JobType == null)? '' : JobType #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].JobType' value='#= (JobType == null) ? '' : JobType #' />");
+                    columns.Bound(p => p.JobNo).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-column-center" }).Width(30)
+                        .ClientTemplate("#= (JobNo == null)? '' : JobNo #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].JobNo' value='#= (JobNo == null) ? '' : JobNo #' />");
+                    columns.Bound(p => p.CodeSection).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-column-center" }).Width(30)
+                        .ClientTemplate("#= (CodeSection == null)? '' : CodeSection #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CodeSection' value='#= (CodeSection == null) ? '' : CodeSection #' />");
+                    columns.Bound(p => p.CodeItem).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-column-center" }).Width(30)
+                        .ClientTemplate("#= (CodeItem == null)? '' : CodeItem #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CodeItem' value='#= (CodeItem == null) ? '' : CodeItem #' />");
+                    columns.Bound(p => p.RowUnit).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-column-center" }).Width(30)
+                        .ClientTemplate("#= (RowUnit == null)? '' : RowUnit #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].RowUnit' value='#= (RowUnit == null) ? '' : RowUnit #' />");
+
+                    
+                    columns.Bound(p => p.CommodityTypeID).DisplayNameTitle().Filterable(false).Hidden()
+                        .ClientTemplate("#= CommodityTypeID #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityTypeID' value='#= CommodityTypeID #' />");
+
+                    columns.Bound(p => p.CalculatingTypeID).DisplayNameTitle().Filterable(false).Hidden()
+                        .ClientTemplate("#= CalculatingTypeID #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CalculatingTypeID' value='#= CalculatingTypeID #' />");
+
+                    columns.Bound(p => p.Quantity).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-number-column" }).Width(50)
+                        .Format("{0:n0}")
+                        .ClientFooterTemplate("#= kendo.format('{0:n0}', sum) #")
+                        .ClientTemplate("#= kendo.format('{0:n0}', Quantity) #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].Quantity' value='#= Quantity #' />");
+
+                    columns.Bound(p => p.UnitPrice).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-number-column" }).Width(90)
+                        .Format("{0:n0}")
+                        .ClientTemplate("#= kendo.format('{0:n0}', UnitPrice) #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].UnitPrice' value='#= UnitPrice #' />");
+
+                    columns.Bound(p => p.Amount).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-number-column" }).Width(90)
+                        .Format("{0:n0}")
+                        .ClientFooterTemplate("#= kendo.format('{0:n0}', sum) #")
+                        .ClientTemplate("#= kendo.format('{0:n0}', Amount) #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].Amount' value='#= Amount #' />");
+
+                    columns.Bound(p => p.VATPercent).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-number-column" }).Width(50)
+                        .Format("{0:n0}")
+                        .ClientTemplate("#= kendo.format('{0:n0}%', VATPercent) #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].VATPercent' value='#= VATPercent #' />");
+
+                    columns.Bound(p => p.VATAmount).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-number-column" }).Width(90).Hidden()
+                        .Format("{0:n0}")
+                        .ClientFooterTemplate("#= kendo.format('{0:n0}', sum) #")
+                        .ClientTemplate("#= kendo.format('{0:n0}', VATAmount) #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].VATAmount' value='#= VATAmount #' />");
+
+
+                    columns.Bound(p => p.GrossPrice).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-number-column" }).Width(90).Hidden()
+                        .Format("{0:n0}")
+                        .ClientTemplate("#= kendo.format('{0:n0}', GrossPrice) #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].GrossPrice' value='#= GrossPrice #' />");
+
+                    columns.Bound(p => p.GrossAmount).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-number-column" }).Width(90)
+                        .Format("{0:n0}")
+                        .ClientFooterTemplate("#= kendo.format('{0:n0}', sum) #")
+                        .ClientTemplate("#= kendo.format('{0:n0}', GrossAmount) #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].GrossAmount' value='#= GrossAmount #' />");
+
+
+                    columns.Bound(p => p.Remarks).DisplayNameTitle().Filterable(false).Hidden()
+                        .ClientTemplate("#= (Remarks == null)? '' : Remarks #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].Remarks' value='#= (Remarks == null) ? '' : Remarks #' />");
+
+                    columns.Bound(p => p.InActivePartial).DisplayNameTitle().Filterable(false).Hidden()
+                        .ClientTemplate("#= (InActivePartial == null)? '' : InActivePartial #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].InActivePartial' value='#= (InActivePartial == null) ? '' : InActivePartial #' />");
+
+                    columns.Command(command => { command.Destroy().Text("<span class='command' ></span>"); }).Width(50).Hidden(!@Model.Editable);
+                })
+                    .Filterable()
+                    .Navigatable()
+
+                    .ToolBar(toolbar =>
+                    {
+                        if (Model.Editable)
+                        {
+                            toolbar.Template(@<text>
+                <button type="button" class="k-button" onclick="$('#kendoGridDetails').data('kendoGrid').addRow()"> <img src="~/Content/Images/Mains/Size24/Actions-bookmark-add-icon-24.png" /> Add new item </button>
+                            </text>);
+                        }
+                        else
+                        {//Add a functionless button for display purpose only
+                            toolbar.Template(
+            @<text>
+                <div>
+                    @(Html.Kendo().Button()
+                                            .Name("iconButton")
+                                            .HtmlAttributes(new { type = "button" })
+                                            .SpriteCssClass("k-icon k-i-ungroup") //.Content("My button label")
+                    )
+                </div>
+            </text>);
+                        }
+                    })
+
+                                                        .Editable(editable => { editable.Enabled(Model.Editable); editable.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(true).CreateAt(GridInsertRowPosition.Bottom); })
+                                                        .Selectable(settings =>
+                                                        {
+                                                            settings.Mode(GridSelectionMode.Multiple);
+                                                            settings.Type(GridSelectionType.Row);
+                                                        })
+                                                        .Events(events =>
+                                                        {
+                                                        }).DataSource(dataSource => dataSource
+                                                                .Ajax()
+                                                                .Batch(true)
+                                                                .ServerOperation(false)
+                                                                .Model(model =>
+                                                                {
+                                                                    model.Id(x => x.PurchaseOrderDetailID);
+                                                                    model.Field(m => m.PurchaseOrderDetailID).DefaultValue(0);
+                                                                    model.Field(m => m.PurchaseOrderID).DefaultValue(@Model.PurchaseOrderID);
+                                                                    model.Field(m => m.CalculatingTypeID).DefaultValue(@GlobalEnums.CalculatingTypeID);
+                                                                    model.Field(m => m.CommodityID).DefaultValue(1);
+                                                                    model.Field(m => m.CommodityCode).DefaultValue("#");
+                                                                    model.Field(m => m.CommodityName).DefaultValue("#");
+                                                                    model.Field(m => m.CommodityTypeID).DefaultValue(1);
+                                                                    model.Field(m => m.VATPercent).DefaultValue(10);
+                                                                })
+                                                                .Events(events =>
+                                                                {
+                                                                    events.Error("kendGrid_ErrorHandler");
+                                                                })
+                                                                .Aggregates(a => a.Add(x => x.RowSpecification).Count())
+                                                                .Aggregates(a => a.Add(x => x.Quantity).Sum())
+                                                                .Aggregates(a => a.Add(x => x.Amount).Sum())
+                                                                .Aggregates(a => a.Add(x => x.VATAmount).Sum())
+                                                                .Aggregates(a => a.Add(x => x.GrossAmount).Sum())
+                                                            )
+            )
+        </div>
+
+
+        <div class="div-k-panel">
+            @(Html.Kendo().PanelBar()
+                .Name("IntroPanelBar")
+                .Items(items =>
+                {
+                    items.Add()
+                        .Text("Other PO information")
+                        .Selected(true)
+                        .Expanded((Model.PurchaseOrderID > 0? false: true))
+                        .Content(@<text>
+                            <div class="left-panel" style="height:30px;" ></div>
+                            <div class="right-panel">
+                                <div class="right-first-panel">
+                                    @Html.EditorFor(d => d.Salesperson, new { EmployeeDisplayName = @Model.GetDisplayName(m => m.Salesperson) })
+                                    @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/PreparedPerson.cshtml")
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Remarks, new { @class = "right-panel-label" })
+                                        <div class="div-input">
+                                            @Html.Kendo().MaskedTextBoxFor(model => model.Remarks).HtmlAttributes(new { @class = "right-panel-input" })
+                                        </div>
+                                        <div class="div-validation-message">
+                                            @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="right-second-panel">
+                                    @Html.EditorFor(d => d.ControlPerson, new { EmployeeDisplayName = @Model.GetDisplayName(m => m.ControlPerson) })
+                                    @Html.EditorFor(d => d.AuthorizedPerson, new { EmployeeDisplayName = @Model.GetDisplayName(m => m.AuthorizedPerson) })
+                                    
+                                    @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/Approver.cshtml")
+                                    @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/Verifier.cshtml")
+                                    @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/Manager.cshtml")
+                                </div>
+                            </div>
+                        </text>).HtmlAttributes(new { @class = "panel-class" });
+                })
+            )
+        </div>
+
+
+
+        <div class="right-botton-panel">
+            @if (Model.Editable)
+            {
+                <button type="submit" class="k-button custom-button SubmitTypeOption-Save" formaction="@Url.Action("Edit", "PurchaseOrders")" onclick="$('#Approved').val(false);"> <img src="~/Content/Images/New/save-icon.png" /> Save </button>
+                <button type="submit" class="k-button custom-button SubmitTypeOption-Closed" formaction="@Url.Action("Edit", "PurchaseOrders")" onclick="$('#Approved').val(false);"> <img src="~/Content/Images/New/Ok-icon-1.png" /> Save and Close </button>
+                <button type="submit" class="k-button custom-button SubmitTypeOption-Closed" formaction="@Url.Action("Edit", "PurchaseOrders")" onclick="$('#Approved').val(false); $('#PrintAfterClosedSubmit').val(true);"> <img src="~/Content/Images/New/Actions-document-print-icon.png" /> Save and Print</button>
+                @*<button type="submit" class="k-button custom-button SubmitTypeOption-Closed" formaction="@Url.Action("Edit", "PurchaseOrders")" onclick="$('#Approved').val(true);"> <img src="~/Content/Images/New/Ok-icon-1.png" /> Save and Self Approve</button>*@
+            }
+            else
+            {
+                if (Model.Approved && !Model.Approvable && !Model.UnApprovable)
+                {
+                    @*<button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Approve", "PurchaseOrders", new {id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/Mains/Cross-icon-cancel32.png" /> Un Authoring</button>*@
+                }
+            }
+
+            @if (Model.PurchaseOrderID > 0)
+            {
+                if (!Model.Approvable && !Model.UnApprovable)
+                {
+                    <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Approve", "PurchaseOrders", new {id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/Mains/@(!@Model.Approved ? "Actions-ok-icon32.png" : "Cross-icon-cancel32.png")" /> @(!Model.Approved ? "Approve" : "Un-Approve") </button>
+                }
+                <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Print", "PurchaseOrders", new { id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/New/Apps-printer-icon.png" /> Print </button>
+            }
+
+        </div>
+
+        @Html.Partial("~/Views/Helpers/Bases/_BaseSubmit.cshtml")
+
+        @if (Model.Editable)
+        {
+            @*<div><input style="font-size: 11px;" type="file" name="xlfile" id="xlf" /></div> Disable. Can anable at any time *@
+        }
+
+
+
+    </div>
+}
+
+
+<script src="@Url.Content("~/Scripts/Helpers/KendoGrid/gridHelper.js")"></script>
+<script src="@Url.Content("~/Scripts/Controllers/Sales/PurchaseOrders/Import.js")"></script>
+
+<script type="text/javascript">
+    window.urlCommoditiesApi = '@Url.Action("GetCommodityImport", "CommodityAPIs", new { area = "Commons" })';
+</script>
