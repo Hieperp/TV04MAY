@@ -14,12 +14,16 @@ namespace TotalDTO.Commons
 
         [Display(Name = "Address")]
         string ProjectAddress { get; set; }
-        [Display(Name = "Project deadline")]
+        [Display(Name = "Estimated completion date")]
         Nullable<System.DateTime> DueDate { get; set; }
     }
     public class ProjectBaseDTO : BaseDTO, IProjectBaseDTO
     {
         public int ProjectID { get; set; }
+
+        [Display(Name = "Commencement date")]
+        [Required(ErrorMessage = "Please input commencement date")]
+        public override DateTime? EntryDate { get; set; }
 
         [Display(Name = "Project name")]
         [Required(ErrorMessage = "Please input project name")]
@@ -28,9 +32,9 @@ namespace TotalDTO.Commons
         [Display(Name = "Address")]
         [Required(ErrorMessage = "Please input project address")]
         public string ProjectAddress { get; set; }
-        
-        [Display(Name = "Date to be deliveried")]
-        [Required(ErrorMessage = "Please input delivery date")]
+
+        [Display(Name = "Estimated completion date")]
+        [Required(ErrorMessage = "Please input estimated completion date")]
         public Nullable<System.DateTime> DueDate { get; set; }
     }
 

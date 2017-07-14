@@ -112,8 +112,8 @@ namespace TotalDTO.Purchases
         [UIHint("AutoCompletes/EmployeeBase")]
         public EmployeeBaseDTO AuthorizedPerson { get; set; }
 
-        [Display(Name = "Project deadline")]
-        public Nullable<System.DateTime> DueDate { get { return (this.Project != null ? this.Project.DueDate : null); } set { } }
+        [Display(Name = "Estimated project completion date")]
+        public override Nullable<System.DateTime> DueDate { get { return (this.Project != null ? this.Project.DueDate : null); } set { } }
 
         public List<PurchaseOrderDetailDTO> PurchaseOrderViewDetails { get; set; }
         public List<PurchaseOrderDetailDTO> ViewDetails { get { return this.PurchaseOrderViewDetails; } set { this.PurchaseOrderViewDetails = value; } }

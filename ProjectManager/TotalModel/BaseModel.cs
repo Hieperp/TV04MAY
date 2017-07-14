@@ -30,7 +30,7 @@ namespace TotalModel
 
         [UIHint("StringReadonly")]
         [Display(Name = "P.O date")]
-        [Required(ErrorMessage = "Vui lòng nhập ngày lập")]
+        [Required(ErrorMessage = "Please input P.O date")]
         public virtual DateTime? EntryDate { get; set; }
 
         public int LocationID { get; set; }
