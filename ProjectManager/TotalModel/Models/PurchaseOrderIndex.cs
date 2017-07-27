@@ -26,5 +26,6 @@ namespace TotalModel.Models
         public string PaymentTermName { get; set; }
         public string SalespersonName { get; set; }
         public string ProjectCode { get; set; }
+        public string ApprovedText { get; set; }
     }
 }

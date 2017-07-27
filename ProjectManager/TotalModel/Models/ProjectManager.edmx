@@ -5947,6 +5947,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
           <Property Type="String" Name="PaymentTermName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="SalespersonName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ProjectCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ApprovedText" Nullable="false" MaxLength="12" />
         </ComplexType>
         <ComplexType Name="PurchaseOrderViewDetail">
           <Property Type="Int32" Name="PurchaseOrderDetailID" Nullable="false" />
@@ -8027,6 +8028,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
                 <ScalarProperty Name="PaymentTermName" ColumnName="PaymentTermName" />
                 <ScalarProperty Name="SalespersonName" ColumnName="SalespersonName" />
                 <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="ApprovedText" ColumnName="ApprovedText" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
