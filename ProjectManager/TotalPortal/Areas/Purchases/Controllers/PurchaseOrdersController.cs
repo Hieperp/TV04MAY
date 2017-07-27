@@ -16,6 +16,7 @@ using TotalDTO.Purchases;
 using TotalPortal.Controllers;
 using TotalPortal.Areas.Purchases.ViewModels;
 using TotalPortal.Areas.Purchases.Builders;
+using TotalPortal.ViewModels.Helpers;
 
 
 
@@ -41,6 +42,21 @@ namespace TotalPortal.Areas.Purchases.Controllers
         }
 
 
+        protected override PrintViewModel InitPrintViewModel(int? id)
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel(id);
+            printViewModel.ReportPath = "/ProjectManagers/PurchaseOrderSheet";
+            return printViewModel;
+        }
+
+
+        [OnResultExecutingFilterAttribute]
+        public ActionResult Print1Page(int? id)
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel(id);
+            printViewModel.ReportPath = "/ProjectManagers/PurchaseOrderSheet1Page";
+            return View("Print", printViewModel);
+        }
 
     }
 

@@ -65,7 +65,7 @@
                                         @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                
+
 
                             </div>
 
@@ -88,7 +88,7 @@
 
                                         @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/PaymentTerm.cshtml")
 
-                                        
+
                                     </div>
 
                                     <div class="right-second-panel">
@@ -120,15 +120,15 @@
 
                                 <div>
                                     <div class="right-first-panel">
-                                        
-                                        
 
-                                        
+
+
+
 
                                     </div>
 
                                     <div class="right-second-panel">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
                         .ClientTemplate("#= CommodityID #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityID' value='#= CommodityID #' />");
                     columns.Bound(p => p.CommodityName).DisplayNameTitle().Filterable(false).Width(90).HtmlAttributes(new { style = "" }).Hidden()
                         .ClientTemplate("#= CommodityName #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityName' value='#= CommodityName #' />");
-                    columns.Bound(p => p.CommodityCode).DisplayNameTitle().Filterable(false).Hidden()                        
+                    columns.Bound(p => p.CommodityCode).DisplayNameTitle().Filterable(false).Hidden()
                         .ClientTemplate("<div> #= CommodityCode #</div>" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityCode' value='#= CommodityCode #' />");
 
 
@@ -186,7 +186,7 @@
                     columns.Bound(p => p.RowUnit).DisplayNameTitle().Filterable(false).HtmlAttributes(new { @class = "grid-column-center" }).Width(30)
                         .ClientTemplate("#= (RowUnit == null)? '' : RowUnit #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].RowUnit' value='#= (RowUnit == null) ? '' : RowUnit #' />");
 
-                    
+
                     columns.Bound(p => p.CommodityTypeID).DisplayNameTitle().Filterable(false).Hidden()
                         .ClientTemplate("#= CommodityTypeID #" + "<input type='hidden' name='PurchaseOrderViewDetails[#= index(data) #].CommodityTypeID' value='#= CommodityTypeID #' />");
 
@@ -243,58 +243,58 @@
                         if (Model.Editable)
                         {
                             toolbar.Template(@<text>
-                <button type="button" class="k-button" onclick="$('#kendoGridDetails').data('kendoGrid').addRow()"> <img src="~/Content/Images/Mains/Size24/Actions-bookmark-add-icon-24.png" /> Add new item </button>
+                                <button type="button" class="k-button" onclick="$('#kendoGridDetails').data('kendoGrid').addRow()"> <img src="~/Content/Images/Mains/Size24/Actions-bookmark-add-icon-24.png" /> Add new item </button>
                             </text>);
                         }
                         else
                         {//Add a functionless button for display purpose only
                             toolbar.Template(
-            @<text>
-                <div>
-                    @(Html.Kendo().Button()
+                                @<text>
+                                    <div>
+                                        @(Html.Kendo().Button()
                                             .Name("iconButton")
                                             .HtmlAttributes(new { type = "button" })
                                             .SpriteCssClass("k-icon k-i-ungroup") //.Content("My button label")
-                    )
-                </div>
-            </text>);
+                                        )
+                                    </div>
+                                </text>);
                         }
                     })
 
-                                                        .Editable(editable => { editable.Enabled(Model.Editable); editable.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(true).CreateAt(GridInsertRowPosition.Bottom); })
-                                                        .Selectable(settings =>
-                                                        {
-                                                            settings.Mode(GridSelectionMode.Multiple);
-                                                            settings.Type(GridSelectionType.Row);
-                                                        })
-                                                        .Events(events =>
-                                                        {
-                                                        }).DataSource(dataSource => dataSource
-                                                                .Ajax()
-                                                                .Batch(true)
-                                                                .ServerOperation(false)
-                                                                .Model(model =>
-                                                                {
-                                                                    model.Id(x => x.PurchaseOrderDetailID);
-                                                                    model.Field(m => m.PurchaseOrderDetailID).DefaultValue(0);
-                                                                    model.Field(m => m.PurchaseOrderID).DefaultValue(@Model.PurchaseOrderID);
-                                                                    model.Field(m => m.CalculatingTypeID).DefaultValue(@GlobalEnums.CalculatingTypeID);
-                                                                    model.Field(m => m.CommodityID).DefaultValue(1);
-                                                                    model.Field(m => m.CommodityCode).DefaultValue("#");
-                                                                    model.Field(m => m.CommodityName).DefaultValue("#");
-                                                                    model.Field(m => m.CommodityTypeID).DefaultValue(1);
-                                                                    model.Field(m => m.VATPercent).DefaultValue(10);
-                                                                })
-                                                                .Events(events =>
-                                                                {
-                                                                    events.Error("kendGrid_ErrorHandler");
-                                                                })
-                                                                .Aggregates(a => a.Add(x => x.RowSpecification).Count())
-                                                                .Aggregates(a => a.Add(x => x.Quantity).Sum())
-                                                                .Aggregates(a => a.Add(x => x.Amount).Sum())
-                                                                .Aggregates(a => a.Add(x => x.VATAmount).Sum())
-                                                                .Aggregates(a => a.Add(x => x.GrossAmount).Sum())
-                                                            )
+                                                                                            .Editable(editable => { editable.Enabled(Model.Editable); editable.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(true).CreateAt(GridInsertRowPosition.Bottom); })
+                                                                                            .Selectable(settings =>
+                                                                                            {
+                                                                                                settings.Mode(GridSelectionMode.Multiple);
+                                                                                                settings.Type(GridSelectionType.Row);
+                                                                                            })
+                                                                                            .Events(events =>
+                                                                                            {
+                                                                                            }).DataSource(dataSource => dataSource
+                                                                                                    .Ajax()
+                                                                                                    .Batch(true)
+                                                                                                    .ServerOperation(false)
+                                                                                                    .Model(model =>
+                                                                                                    {
+                                                                                                        model.Id(x => x.PurchaseOrderDetailID);
+                                                                                                        model.Field(m => m.PurchaseOrderDetailID).DefaultValue(0);
+                                                                                                        model.Field(m => m.PurchaseOrderID).DefaultValue(@Model.PurchaseOrderID);
+                                                                                                        model.Field(m => m.CalculatingTypeID).DefaultValue(@GlobalEnums.CalculatingTypeID);
+                                                                                                        model.Field(m => m.CommodityID).DefaultValue(1);
+                                                                                                        model.Field(m => m.CommodityCode).DefaultValue("#");
+                                                                                                        model.Field(m => m.CommodityName).DefaultValue("#");
+                                                                                                        model.Field(m => m.CommodityTypeID).DefaultValue(1);
+                                                                                                        model.Field(m => m.VATPercent).DefaultValue(10);
+                                                                                                    })
+                                                                                                    .Events(events =>
+                                                                                                    {
+                                                                                                        events.Error("kendGrid_ErrorHandler");
+                                                                                                    })
+                                                                                                    .Aggregates(a => a.Add(x => x.RowSpecification).Count())
+                                                                                                    .Aggregates(a => a.Add(x => x.Quantity).Sum())
+                                                                                                    .Aggregates(a => a.Add(x => x.Amount).Sum())
+                                                                                                    .Aggregates(a => a.Add(x => x.VATAmount).Sum())
+                                                                                                    .Aggregates(a => a.Add(x => x.GrossAmount).Sum())
+                                                                                                )
             )
         </div>
 
@@ -307,9 +307,9 @@
                     items.Add()
                         .Text("Other PO information")
                         .Selected(true)
-                        .Expanded((Model.PurchaseOrderID > 0? false: true))
+                        .Expanded((Model.PurchaseOrderID > 0 ? false : true))
                         .Content(@<text>
-                            <div class="left-panel" style="height:30px;" ></div>
+                            <div class="left-panel" style="height:30px;"></div>
                             <div class="right-panel">
                                 <div class="right-first-panel">
                                     @Html.EditorFor(d => d.Salesperson, new { EmployeeDisplayName = @Model.GetDisplayName(m => m.Salesperson) })
@@ -329,7 +329,7 @@
                                 <div class="right-second-panel">
                                     @Html.EditorFor(d => d.ControlPerson, new { EmployeeDisplayName = @Model.GetDisplayName(m => m.ControlPerson) })
                                     @Html.EditorFor(d => d.AuthorizedPerson, new { EmployeeDisplayName = @Model.GetDisplayName(m => m.AuthorizedPerson) })
-                                    
+
                                     @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/Approver.cshtml")
                                     @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/Verifier.cshtml")
                                     @Html.Partial("~/Views/Shared/EditorTemplates/DropDowns/Manager.cshtml")
@@ -365,6 +365,7 @@
                     <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Approve", "PurchaseOrders", new {id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/Mains/@(!@Model.Approved ? "Actions-ok-icon32.png" : "Cross-icon-cancel32.png")" /> @(!Model.Approved ? "Approve" : "Un-Approve") </button>
                 }
                 <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Print", "PurchaseOrders", new { id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/New/Apps-printer-icon.png" /> Print </button>
+                <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Print1Page", "PurchaseOrders", new { id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/New/Apps-printer-icon.png" /> Print (1 Page)</button>
             }
 
         </div>
