@@ -364,8 +364,8 @@
                 {
                     <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Approve", "PurchaseOrders", new {id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/Mains/@(!@Model.Approved ? "Actions-ok-icon32.png" : "Cross-icon-cancel32.png")" /> @(!Model.Approved ? "Approve" : "Un-Approve") </button>
                 }
-                <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Print", "PurchaseOrders", new { id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/New/Apps-printer-icon.png" /> Print </button>
-                <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Print1Page", "PurchaseOrders", new { id = @Model.PurchaseOrderID })'"> <img src="~/Content/Images/New/Apps-printer-icon.png" /> Print (1 Page)</button>
+                <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Print", "PurchaseOrders", new { id = @Model.PurchaseOrderID })'" formtarget="_blank"> <img src="~/Content/Images/New/Apps-printer-icon.png" /> Print </button>
+                <button type="button" class="k-button custom-button" onclick="location.href='@Url.Action("Print1Page", "PurchaseOrders", new { id = @Model.PurchaseOrderID })'" formtarget="_blank"> <img src="~/Content/Images/New/Apps-printer-icon.png" /> Print (1 Page)</button>
             }
 
         </div>
