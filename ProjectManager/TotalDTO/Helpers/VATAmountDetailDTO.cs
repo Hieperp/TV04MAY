@@ -17,7 +17,7 @@ namespace TotalDTO.Helpers
     public abstract class VATAmountDetailDTO : AmountDetailDTO, IVATAmountDetailDTO
     {
         [Display(Name = "VAT")]
-        [UIHint("DecimalReadonly")]
+        [UIHint("Decimal")]
         public virtual decimal VATPercent { get; set; }
 
         [Display(Name = "Giá sau thuế")]
