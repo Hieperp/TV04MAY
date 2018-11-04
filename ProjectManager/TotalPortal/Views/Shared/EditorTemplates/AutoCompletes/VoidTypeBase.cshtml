@@ -22,7 +22,7 @@
             e.Change("gridEditorVoidTypeChange");
         })
         .Value(Model)
-        .HtmlAttributes(new { @class = "voidTypeBase_AutoComplete left-panel-input" + (ViewData["VoidTypeClassSpecialEditable"] != null ? (" " + ViewData["VoidTypeClassSpecialEditable"]) : "") })
+        .HtmlAttributes(new { @class = "voidTypeBase_AutoComplete left-panel-input full100Zise" + (ViewData["VoidTypeClassSpecialEditable"] != null ? (" " + ViewData["VoidTypeClassSpecialEditable"]) : "") })
 )
 
 <script type="text/javascript">
@@ -30,3 +30,9 @@
         window.VoidTypeNameBeforeChange = $("#VoidTypeName").val();
     });
 </script>
+
+<style>
+    .full100Zise {
+    width: 100%;
+}
+</style>

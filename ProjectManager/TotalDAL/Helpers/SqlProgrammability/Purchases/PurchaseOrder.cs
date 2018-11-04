@@ -46,13 +46,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Purchases
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      PurchaseOrders.PurchaseOrderID, CAST(PurchaseOrders.EntryDate AS DATE) AS EntryDate, PurchaseOrders.PoNumber, Projects.Code AS ProjectCode, Projects.Name AS ProjectName, PurchaseOrders.DeliveryDate, Projects.DueDate, Suppliers.Name AS SupplierName, PaymentTerms.Name AS PaymentTermName, PurchaseOrders.TotalGrossAmount, Salespersons.Name AS SalespersonName, PurchaseOrders.Description, PurchaseOrders.Approved, CASE WHEN PurchaseOrders.Approved = 1 THEN 'Approved' ELSE 'Not Approved' END AS ApprovedText " + "\r\n";
+            queryString = queryString + "       SELECT      PurchaseOrders.PurchaseOrderID, CAST(PurchaseOrders.EntryDate AS DATE) AS EntryDate, PurchaseOrders.PoNumber, Projects.Code AS ProjectCode, Projects.Name AS ProjectName, PurchaseOrders.DeliveryDate, Projects.DueDate, Suppliers.Name AS SupplierName, PaymentTerms.Name AS PaymentTermName, PurchaseOrders.TotalGrossAmount, Salespersons.Name AS SalespersonName, PurchaseOrders.Description, PurchaseOrders.Approved, CASE WHEN PurchaseOrders.Approved = 1 THEN 'Approved' ELSE 'Not Approved' END AS ApprovedText, VoidTypes.Name AS VoidTypeName " + "\r\n";
             queryString = queryString + "       FROM        PurchaseOrders " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON PurchaseOrders.EntryDate >= @FromDate AND PurchaseOrders.EntryDate <= @ToDate AND PurchaseOrders.OrganizationalUnitID IN (SELECT AccessControls.OrganizationalUnitID FROM AccessControls INNER JOIN AspNetUsers ON AccessControls.UserID = AspNetUsers.UserID WHERE AspNetUsers.Id = @AspUserID AND AccessControls.NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.PurchaseOrder + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = PurchaseOrders.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Customers Suppliers ON PurchaseOrders.SupplierID = Suppliers.CustomerID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Projects ON PurchaseOrders.ProjectID = Projects.ProjectID " + "\r\n";
             queryString = queryString + "                   INNER JOIN PaymentTerms ON PurchaseOrders.PaymentTermID = PaymentTerms.PaymentTermID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Employees Salespersons ON PurchaseOrders.SalespersonID = Salespersons.EmployeeID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN VoidTypes ON PurchaseOrders.VoidTypeID = VoidTypes.VoidTypeID" + "\r\n";
             queryString = queryString + "       " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

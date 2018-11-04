@@ -27,5 +27,6 @@ namespace TotalModel.Models
         public string SalespersonName { get; set; }
         public string ProjectCode { get; set; }
         public string ApprovedText { get; set; }
+        public string VoidTypeName { get; set; }
     }
 }

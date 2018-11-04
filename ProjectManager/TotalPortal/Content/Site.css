@@ -908,6 +908,9 @@ a[class^='info-bar'] {
     color: darkcyan;
 }
 
+.isVoid {
+    color: GrayText;
+}
 
 
 

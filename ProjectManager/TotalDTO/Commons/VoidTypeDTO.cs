@@ -7,7 +7,7 @@ namespace TotalDTO.Commons
     {
         Nullable<int> VoidTypeID { get; set; }
         string Code { get; set; }
-        [Display(Name = "Lý do hủy hoặc chờ giao")]
+        [Display(Name = "Void reasons")]
         [UIHint("AutoCompletes/VoidTypeBase")]
         [Required(ErrorMessage = "Vui lòng nhập lý do hủy hoặc chờ giao")]
         string Name { get; set; }

@@ -115,6 +115,10 @@ namespace TotalDTO.Purchases
         [Display(Name = "Estimated project completion date")]
         public override Nullable<System.DateTime> DueDate { get { return (this.Project != null ? this.Project.DueDate : null); } set { } }
 
+        public override Nullable<int> VoidTypeID { get { return (this.VoidType != null ? this.VoidType.VoidTypeID : null); } }
+        [UIHint("AutoCompletes/VoidType")]
+        public VoidTypeBaseDTO VoidType { get; set; }
+
         public List<PurchaseOrderDetailDTO> PurchaseOrderViewDetails { get; set; }
         public List<PurchaseOrderDetailDTO> ViewDetails { get { return this.PurchaseOrderViewDetails; } set { this.PurchaseOrderViewDetails = value; } }
 

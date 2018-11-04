@@ -135,6 +135,7 @@
         <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_Projects" />
         <EntityTypeShape EntityType="ProjectManagerModel.AspNetGroup" Width="1.5" PointX="2.5" PointY="10" />
         <AssociationConnector Association="ProjectManagerModel.FK_AspNetUsers_AspNetGroups" />
+        <AssociationConnector Association="ProjectManagerModel.FK_PurchaseOrders_VoidTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

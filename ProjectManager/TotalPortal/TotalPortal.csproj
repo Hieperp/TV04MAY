@@ -975,6 +975,7 @@
     <Content Include="Areas\Commons\Views\Projects\Edit.cshtml" />
     <Content Include="Areas\Commons\Views\Projects\Index.cshtml" />
     <Content Include="Areas\Commons\Views\Projects\_Project.cshtml" />
+    <Content Include="Areas\Purchases\Views\PurchaseOrders\Void.cshtml" />
     <None Include="Properties\PublishProfiles\VCP.pubxml" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1029,6 +1030,7 @@
     <Content Include="Scripts\Controllers\Purchases\PurchaseOrders\Edit.js" />
     <Content Include="Scripts\Controllers\Purchases\PurchaseOrders\Index.js" />
     <Content Include="Scripts\Controllers\Purchases\PurchaseOrders\Print.js" />
+    <Content Include="Scripts\Controllers\Purchases\PurchaseOrders\Void.js" />
     <Content Include="Scripts\Controllers\Root\Home\Index.js" />
     <Content Include="Scripts\Controllers\Root\Home\LockedDate.js" />
     <Content Include="Scripts\Controllers\Root\Home\Options.js" />

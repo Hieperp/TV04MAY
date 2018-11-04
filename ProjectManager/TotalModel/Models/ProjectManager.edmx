@@ -1856,6 +1856,18 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PurchaseOrders_VoidTypes">
+          <End Role="VoidTypes" Type="Self.VoidTypes" Multiplicity="0..1" />
+          <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoidTypes">
+              <PropertyRef Name="VoidTypeID" />
+            </Principal>
+            <Dependent Role="PurchaseOrders">
+              <PropertyRef Name="VoidTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReceiptDetails_GoodsIssues">
           <End Role="GoodsIssues" Type="Self.GoodsIssues" Multiplicity="1" />
           <End Role="ReceiptDetails" Type="Self.ReceiptDetails" Multiplicity="*" />
@@ -2710,6 +2722,10 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseOrders_Projects" Association="Self.FK_PurchaseOrders_Projects">
             <End Role="Projects" EntitySet="Projects" />
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrders_VoidTypes" Association="Self.FK_PurchaseOrders_VoidTypes">
+            <End Role="VoidTypes" EntitySet="VoidTypes" />
             <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_ReceiptDetails_GoodsIssues" Association="Self.FK_ReceiptDetails_GoodsIssues">
@@ -3584,6 +3600,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
           <NavigationProperty Name="Project" Relationship="ProjectManagerModel.FK_PurchaseOrders_Projects" FromRole="PurchaseOrder" ToRole="Project" />
           <Property Name="ManagerID" Type="Int32" Nullable="false" />
           <Property Name="VerifierID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VoidType" Relationship="ProjectManagerModel.FK_PurchaseOrders_VoidTypes" FromRole="PurchaseOrder" ToRole="VoidType" />
         </EntityType>
         <EntityType Name="ReceiptDetail">
           <Key>
@@ -3771,6 +3788,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
           <NavigationProperty Name="DeliveryAdviceDetails" Relationship="Self.FK_DeliveryAdviceDetails_VoidTypes" FromRole="VoidTypes" ToRole="DeliveryAdviceDetails" />
           <NavigationProperty Name="DeliveryAdvices" Relationship="Self.FK_DeliveryAdvices_VoidTypes" FromRole="VoidTypes" ToRole="DeliveryAdvices" />
           <NavigationProperty Name="GoodsIssueDetails" Relationship="Self.FK_GoodsIssueDetails_VoidTypes" FromRole="VoidTypes" ToRole="GoodsIssueDetails" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="ProjectManagerModel.FK_PurchaseOrders_VoidTypes" FromRole="VoidType" ToRole="PurchaseOrder" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -5280,6 +5298,10 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
             <End Role="AspNetGroup" EntitySet="AspNetGroups" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrders_VoidTypes" Association="ProjectManagerModel.FK_PurchaseOrders_VoidTypes">
+            <End Role="VoidType" EntitySet="VoidTypes" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="AccountInvoiceIndex">
           <Property Type="Int32" Name="AccountInvoiceID" Nullable="false" />
@@ -5948,6 +5970,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
           <Property Type="String" Name="SalespersonName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ProjectCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ApprovedText" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="VoidTypeName" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="PurchaseOrderViewDetail">
           <Property Type="Int32" Name="PurchaseOrderDetailID" Nullable="false" />
@@ -6326,6 +6349,18 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
             </Principal>
             <Dependent Role="AspNetUser">
               <PropertyRef Name="AspNetGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrders_VoidTypes">
+          <End Type="ProjectManagerModel.VoidType" Role="VoidType" Multiplicity="0..1" />
+          <End Type="ProjectManagerModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoidType">
+              <PropertyRef Name="VoidTypeID" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="VoidTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8029,6 +8064,7 @@ warning 6035: The relationship 'FK_SalesOrders_AspNetUsers2' has columns that ar
                 <ScalarProperty Name="SalespersonName" ColumnName="SalespersonName" />
                 <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
                 <ScalarProperty Name="ApprovedText" ColumnName="ApprovedText" />
+                <ScalarProperty Name="VoidTypeName" ColumnName="VoidTypeName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

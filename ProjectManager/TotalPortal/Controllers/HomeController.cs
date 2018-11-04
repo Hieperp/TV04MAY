@@ -35,7 +35,9 @@ namespace TotalPortal.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "This software is licensed to Tue Viet Engineering Co. Ltd.";
+            ViewBag.SystemInfos = "";// this.baseRepository.GetSystemInfos();
+            ViewBag.SecureSystemInfos = "[@@" + this.baseRepository.GetSystemInfos(true) + "@@]";
 
             return View();
         }

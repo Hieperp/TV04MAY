@@ -67,5 +67,6 @@ namespace TotalModel.Models
         public virtual Employee Employee2 { get; set; }
         public virtual PaymentTerm PaymentTerm { get; set; }
         public virtual Project Project { get; set; }
+        public virtual VoidType VoidType { get; set; }
     }
 }

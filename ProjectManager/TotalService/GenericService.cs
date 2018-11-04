@@ -196,6 +196,8 @@ namespace TotalService
         /// <returns></returns>
         protected virtual bool Save(TDto dto, bool useExistingTransaction)
         {
+            this.genericRepository.SystemInfoValidate();
+
             TEntity entity;
             if (useExistingTransaction)
                 entity = this.SaveThis(dto);
